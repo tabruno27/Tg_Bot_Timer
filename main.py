@@ -7,8 +7,8 @@ from pytimeparse import parse
 def reply(chat_id, time):
     secs_left = parse(time)
     start_timer = "Запускаю таймер"
-    bot.send_message(chat_id, start_timer)
-    message_id = bot.send_message(chat_id, secs_left)
+    message_id = bot.send_message(chat_id, start_timer)
+    bot.update_message(chat_id, message_id, secs_left)
     bot.create_countdown(parse(time), notify, message_id=message_id, time=time)
     bot.create_timer(parse(time), answer_to_message, chat_id=chat_id)
 
@@ -30,7 +30,7 @@ def render_progressbar(total, iteration, prefix='', suffix='', length=13, fill='
 
 
 def answer_to_message (chat_id):
-    answer = ("Время вышло!")
+    answer = "Время вышло!"
     bot.send_message(chat_id, answer)
 
 
@@ -42,4 +42,3 @@ if __name__ == '__main__':
 
     bot.reply_on_message(reply)
     bot.run_bot()
-
