@@ -8,7 +8,6 @@ def reply(chat_id, time):
     secs_left = parse(time)
     start_timer = "Запускаю таймер"
     message_id = bot.send_message(chat_id, start_timer)
-    bot.update_message(chat_id, message_id, secs_left)
     bot.create_countdown(parse(time), notify, message_id=message_id, time=time)
     bot.create_timer(parse(time), answer_to_message, chat_id=chat_id)
 
